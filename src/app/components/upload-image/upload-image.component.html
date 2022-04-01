@@ -1,0 +1,44 @@
+<div class="upload" style="margin: 1% auto; max-width: 40%">
+  <h2>Generar nuevo auto</h2>
+  <p *ngIf="formError" class="error">{{formError}}</p>
+  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Placa</mat-label>
+        <input matInput formControlName="plate">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Año</mat-label>
+        <input matInput formControlName="year">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Color</mat-label>
+        <input matInput formControlName="color">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="price">
+      </mat-form-field>
+    </p>
+    <div class="upload__item">
+      <div class="upload__category">Image</div>
+      <div class="upload__file">
+        <input class="upload__input" type="file" (change)="uploadImage($event.target)" />
+        <div class="upload__format" *ngIf="!uploadedImage">
+          PNG, GIF, WEBP. Max 1Gb.
+        </div>
+        <img *ngIf="uploadedImage" [src]="uploadedImage" alt="uploaded image" class="upload__image" />
+      </div>
+    </div>
+    <button mat-flat-button color="primary" type="submit" [disabled]="isLoading">
+      <span *ngIf="!isLoading">Minar</span>
+      <span *ngIf="isLoading">Loading...</span>
+    </button>
+  </form>
+</div>
